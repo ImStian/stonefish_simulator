@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<scenario>
+  <solver type="dynamics" timestep="0.01"/>
+
+  <environment>
+    <fluid density="1025.0" viscosity="0.001"/>
+    <current velocity="0.3 0.0 0.0"/>
+    <ocean surface="true" look="ocean_look"/>
+    <gravity vector="0 0 -9.81"/>
+  </environment>
+
+  <looks>
+    <look name="cube_look" color="0.8 0.1 0.1"/>
+    <look name="cube2_look" color="0.1 0.8 0.1"/>
+    <look name="cable_look" color="0.2 0.2 0.8"/>
+    <look name="ocean_look" color="0.0 0.3 0.6"/>
+  </looks>
+
+  <!-- Simple cubes instead of USV/payload -->
+  <body name="usv" fixed="false" look="cube_look">
+    <box size="1 0.5 0.3"/>
+    <mass value="10.0"/>
+  </body>
+
+  <body name="payload" fixed="false" look="cube2_look">
+    <box size="0.5 0.5 0.5"/>
+    <mass value="5.0"/>
+  </body>
+
+  <!-- Rope -->
+  <rope name="tether"
+        body1="usv" point1="0.0 0.0 0.0"
+        body2="payload" point2="0.0 0.0 0.0"
+        segments="8"
+        length="4.0"
+        radius="0.05"
+        youngs="1e5"
+        damping="0.05"
+        look="cable_look"/>
+</scenario>

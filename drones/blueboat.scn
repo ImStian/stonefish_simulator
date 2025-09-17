@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<scenario>
+
+    <!-- BlueBoat robot made from boxes -->
+    <robot name="BlueBoat" fixed="false" self_collisions="false">
+
+        <base_link name="Base" type="compound" physics="floating">
+
+            <!-- Central frame -->
+            <external_part name="Frame" type="shape" physics="surface" buoyant="true">
+                <physical>
+                    <box size="1.0 0.5 0.2"/>
+                    <origin xyz="0.0 0.0 0.0"/>
+                </physical>
+                <visual>
+                    <box size="1.0 0.5 0.2"/>
+                    <origin xyz="0.0 0.0 0.0"/>
+                </visual>
+                <material name="Neutral"/>
+                <look name="Gray"/>
+                <mass value="2.0"/>
+                <compound_transform xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            </external_part>
+
+            <!-- Left pontoon -->
+            <external_part name="PontoonL" type="shape" physics="floating" buoyant="true">
+                <physical>
+                    <box size="1.2 0.15 0.15"/>
+                    <origin xyz="-0.5 0.0 -0.2"/>
+                </physical>
+                <visual>
+                    <box size="1.2 0.15 0.15"/>
+                    <origin xyz="-0.5 0.0 -0.2"/>
+                </visual>
+                <material name="Neutral"/>
+                <look name="Blue"/>
+                <mass value="1.0"/>
+                <compound_transform xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            </external_part>
+
+            <!-- Right pontoon -->
+            <external_part name="PontoonR" type="shape" physics="floating" buoyant="true">
+                <physical>
+                    <box size="1.2 0.15 0.15"/>
+                    <origin xyz="0.5 0.0 -0.2"/>
+                </physical>
+                <visual>
+                    <box size="1.2 0.15 0.15"/>
+                    <origin xyz="0.5 0.0 -0.2"/>
+                </visual>
+                <material name="Neutral"/>
+                <look name="Blue"/>
+                <mass value="1.0"/>
+                <compound_transform xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            </external_part>
+
+        </base_link>
+
+        <!-- Thrusters -->
+        <actuator name="ThrusterL" type="thruster">
+            <link name="Base"/>
+            <origin xyz="-0.5 -0.3 -0.2"/>
+            <specs max_setpoint="20.0"/>
+            <propeller diameter="0.1" right="true"/>
+            <rotor_dynamics type="zero_order"/>
+            <thrust_model type="linear_interpolation">
+                <input value="-15.0 -7.5 0.0 7.5 15.0"/>
+                <output value="-15.0 -7.5 0.0 7.5 15.0"/>
+            </thrust_model>
+        </actuator>
+
+        <actuator name="ThrusterR" type="thruster">
+            <link name="Base"/>
+            <origin xyz="0.5 -0.3 -0.2"/>
+            <specs max_setpoint="20.0"/>
+            <propeller diameter="0.1" right="false"/>
+            <rotor_dynamics type="zero_order"/>
+            <thrust_model type="linear_interpolation">
+                <input value="-15.0 -7.5 0.0 7.5 15.0"/>
+                <output value="-15.0 -7.5 0.0 7.5 15.0"/>
+            </thrust_model>
+        </actuator>
+
+        <!-- Spawn the boat at surface level -->
+        <world_transform xyz="0.0 0.0 0.5" rpy="0.0 0.0 0.0"/>
+
+    </robot>
+
+</scenario>
+

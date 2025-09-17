@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<scenario>
+    <!-- Main USV -->
+    <robot name="Blueboat" fixed="false" self_collisions="false">
+        <base_link name="Base" type="compound" physics="floating">
+            <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+            <physical>
+                <mesh filename="objects/usv3.obj" scale="1.0"/>
+            </physical>
+            <visual>
+                <mesh filename="objects/usv3.obj" scale="1.0"/>
+            </visual>
+            <material name="Neutral"/>
+            <look name="Gray"/>
+            <inertia xyz="0.68 3.32 3.34"/>
+            <cg xyz="0.0 0.0 0.01" rpy="0.0 0.0 0.0"/>
+        </base_link>
+
+          <actuator name="Thruster1" type="thruster">
+            <link name="Base"/>
+            <origin rpy="0 -0.78 0" xyz="0.7 0.2 -0.625"/>
+            <specs max_setpoint="50.0" inverted_setpoint="false" normalized_setpoint="false"/>
+            <propeller diameter="0.18" right="true">
+                <mesh filename="orca/bluerov2_propccw.obj" scale="2.0"/>
+                <material name="robot_material"/>
+                <look name="Grey"/>
+            </propeller>
+            <rotor_dynamics type="zero_order"/>
+            <thrust_model type="linear_interpolation">
+                <input value="-40.0 -20.0 0.0 20.0 40.0"/>
+                <output value="-40.0 -20.0 0.0 20.0 40.0"/>
+            </thrust_model>
+        </actuator>
+
+
+        <actuator name="Thruster2" type="thruster">
+            <link name="Base"/>
+            <origin rpy="0 0.78 0" xyz="-0.7 0.2 -0.625"/>
+            <specs max_setpoint="50.0" inverted_setpoint="false" normalized_setpoint="false"/>
+            <propeller diameter="0.18" right="true">
+                <mesh filename="orca/bluerov2_propccw.obj" scale="2.0"/>
+                <material name="robot_material"/>
+                <look name="Grey"/>
+            </propeller>
+            <rotor_dynamics type="zero_order"/>
+            <thrust_model type="linear_interpolation">
+                <input value="-40.0 -20.0 0.0 20.0 40.0"/>
+                <output value="-40.0 -20.0 0.0 20.0 40.0"/>
+            </thrust_model>
+        </actuator>
+
+        <sensor name="odom" type="odometry" rate="10.0">
+            <link name="Base"/>
+            <origin rpy="-1.57 0.0 0.0" xyz="0.0 0.0 0.0"/>
+            <ros_publisher topic="/seapath/odom/ned"/>
+        </sensor>
+
+        <world_transform xyz="2.0 0.0 0.05" rpy="1.57 0.0 0.0"/>
+
+        <ros_subscriber thrusters="/freya/thruster_forces"/>
+        
+	    <sensor name="IMU" type="imu" rate="10.0">
+		<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		<link name="Base"/>
+		<ros_publisher topic="/bluefish_imu"/>
+	    </sensor>
+    </robot>
+
+
+    <!-- Payload object -->
+    <robot name="Payload" fixed="false" self_collisions="false">
+        <base_link name="Base" type="compound" physics="floating">
+            <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+            <physical>
+                <mesh filename="objects/payload2.obj" scale="1.0"/>
+            </physical>
+            <visual>
+                <mesh filename="objects/payload2.obj" scale="1.0"/>
+            </visual>
+            <material name="Neutral"/>
+            <look name="Gray"/>
+            <inertia xyz="0.2 0.2 0.2"/>
+            <cg xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        </base_link>
+
+	    <sensor name="IMU" type="imu" rate="10.0">
+		<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		<link name="Base"/>
+		<ros_publisher topic="/payload_imu"/>
+	    </sensor>
+
+        <!-- Spawn position -->
+        <world_transform xyz="4.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+    </robot>
+
+
+
+</scenario>
+

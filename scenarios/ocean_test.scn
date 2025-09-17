@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<scenario>
+  <!-- Solver -->
+  <solver type="dynamics" timestep="0.01"/>
+
+  <!-- NED definition (required) -->
+  <ned origin="0 0 0" heading="0"/>
+
+  <!-- Environment -->
+  <environment>
+    <fluid density="1025.0" viscosity="0.001"/>
+    <atmosphere/>
+    <ocean surface="true" look="ocean_look"/>
+    <gravity vector="0 0 -9.81"/>
+  </environment>
+
+  <!-- Visual looks -->
+  <looks>
+    <look name="ocean_look" color="0.0 0.3 0.6"/>
+  </looks>
+
+  <!-- Dummy body so the scene is not empty -->
+  <body name="float" fixed="false" look="ocean_look">
+    <box size="1 1 1"/>
+    <mass value="1.0"/>
+  </body>
+</scenario>
+

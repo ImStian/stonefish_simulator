@@ -1,0 +1,170 @@
+<?xml version="1.0"?>
+<scenario>
+    <robot name="Freya" fixed="false" self_collisions="false">
+        <base_link name="Base" type="compound" physics="floating">
+            <external_part name="Base" type="model" physcis="surface">
+                <physical>
+                    <mesh filename="freya/body.obj" scale="1.0"/>
+                    <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+                </physical>
+                <visual>
+                    <mesh filename="objects/usv3.obj" scale="0.8"/>
+                    <origin rpy="3.14 -1.57079633 0" xyz="0.0 -0.1 0.0"/>
+                </visual>
+                <material name="Neutral"/>
+                <look name="Gray"/>
+                <mass value="30.5"/>
+                <compound_transform xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            </external_part>
+
+            <external_part name="Pontoon1" type="model" physics="floating" buoyant="true">
+                <physical>
+                    <mesh filename="freya/pontoon.obj" scale="1.0"/>
+                    <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+                </physical>
+                <visual>
+                    <mesh filename="freya/pontoon.obj" scale="0.01"/>
+                    <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+                </visual>
+                <material name="Neutral"/>
+                <look name="Gray"/>
+                <mass value="25.25"/>
+                <compound_transform xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            </external_part>
+            <external_part name="Pontoon2" type="model" physics="floating" buoyant="true">
+                <physical>
+                    <mesh filename="freya/pontoon2.obj" scale="1.0"/>
+                    <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+                </physical>
+                <visual>
+                    <mesh filename="freya/pontoon2.obj" scale="0.01"/>
+                    <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+                </visual>
+                <material name="Neutral"/>
+                <look name="Gray"/>
+                <mass value="25.25"/>
+                <compound_transform xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            </external_part>
+        </base_link>
+
+        <actuator name="Thruster1" type="thruster">
+            <link name="Base"/>
+            <origin rpy="0 -3.14 0" xyz="-0.8 0.25 0.6"/>
+            <specs max_setpoint="40.0" inverted_setpoint="false" normalized_setpoint="false"/>
+            <propeller diameter="0.18" right="true">
+                <mesh filename="orca/bluerov2_propccw.obj" scale="2.0"/>
+                <material name="robot_material"/>
+                <look name="Grey"/>
+            </propeller>
+            <rotor_dynamics type="zero_order"/>
+            <thrust_model type="linear_interpolation">
+                <input value="-40.0 -20.0 0.0 20.0 40.0"/>
+                <output value="-40.0 -20.0 0.0 20.0 40.0"/>
+            </thrust_model>
+        </actuator>
+
+
+        <actuator name="Thruster2" type="thruster">
+            <link name="Base"/>
+            <origin rpy="0 3.14 0" xyz="-0.8 0.25 -0.6"/>
+            <specs max_setpoint="40.0" inverted_setpoint="false" normalized_setpoint="false"/>
+            <propeller diameter="0.18" right="true">
+                <mesh filename="orca/bluerov2_propccw.obj" scale="2.0"/>
+                <material name="robot_material"/>
+                <look name="Grey"/>
+            </propeller>
+            <rotor_dynamics type="zero_order"/>
+            <thrust_model type="linear_interpolation">
+                <input value="-40.0 -20.0 0.0 20.0 40.0"/>
+                <output value="-40.0 -20.0 0.0 20.0 40.0"/>
+            </thrust_model>
+        </actuator>
+
+
+
+        <sensor name="odom" type="odometry" rate="10.0">
+            <link name="Base"/>
+            <origin rpy="-1.57 0.0 0.0" xyz="0.0 0.0 0.0"/>
+            <ros_publisher topic="/seapath/blueboat_odom/ned"/>
+        </sensor>
+
+        <world_transform xyz="2.0 0.0 0.05" rpy="1.57 0.0 0.0"/>
+
+        <ros_subscriber thrusters="/freya/thruster_forces"/>
+    
+            <sensor name="IMU" rate="20.0" type="imu">
+            <range angular_velocity="10.0 10.0 5.0" linear_acceleration="10.0"/>
+            <noise angle="0.1 0.1 0.5" angular_velocity="0.05" yaw_drift="0.001" linear_acceleration="0.1"/>
+            <history samples="1"/>
+            <origin xyz="0.1 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <link name="Base"/>
+            <ros_publisher topic="/blueboat_imu/data_raw"/>
+        </sensor>
+    
+    </robot>
+
+        <robot name="Payload" fixed="false" self_collisions="false">
+        <base_link name="Base" type="compound" physics="floating">
+            <external_part name="Base" type="model" physcis="surface">
+                <physical>
+                    <mesh filename="freya/body.obj" scale="1.0"/>
+                    <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+                </physical>
+                <visual>
+                    <mesh filename="objects/payload2.obj" scale="0.8"/>
+                    <origin rpy="3.14 -1.57079633 0" xyz="0.0 -0.1 0.0"/>
+                </visual>
+                <material name="Neutral"/>
+                <look name="Gray"/>
+                <mass value="30.5"/>
+                <compound_transform xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            </external_part>
+
+            <external_part name="Pontoon1" type="model" physics="floating" buoyant="true">
+                <physical>
+                    <mesh filename="freya/pontoon.obj" scale="1.0"/>
+                    <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+                </physical>
+                <visual>
+                    <mesh filename="freya/pontoon.obj" scale="0.01"/>
+                    <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+                </visual>
+                <material name="Neutral"/>
+                <look name="Gray"/>
+                <mass value="25.25"/>
+                <compound_transform xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            </external_part>
+            <external_part name="Pontoon2" type="model" physics="floating" buoyant="true">
+                <physical>
+                    <mesh filename="freya/pontoon2.obj" scale="1.0"/>
+                    <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+                </physical>
+                <visual>
+                    <mesh filename="freya/pontoon2.obj" scale="0.01"/>
+                    <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+                </visual>
+                <material name="Neutral"/>
+                <look name="Gray"/>
+                <mass value="25.25"/>
+                <compound_transform xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            </external_part>
+        </base_link>
+        <world_transform xyz="-2.0 0.0 0.05" rpy="1.57 0.0 0.0"/>
+
+            <sensor name="IMU" rate="20.0" type="imu">
+            <range angular_velocity="10.0 10.0 5.0" linear_acceleration="10.0"/>
+            <noise angle="0.1 0.1 0.5" angular_velocity="0.05" yaw_drift="0.001" linear_acceleration="0.1"/>
+            <history samples="1"/>
+            <origin xyz="0.1 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <link name="Base"/>
+            <ros_publisher topic="/payload_imu/data_raw"/>
+        </sensor>
+
+        <sensor name="odom" type="odometry" rate="10.0">
+            <link name="Base"/>
+            <origin rpy="-1.57 0.0 0.0" xyz="0.0 0.0 0.0"/>
+            <ros_publisher topic="/seapath/payload_odom/ned"/>
+        </sensor>
+
+    </robot>
+</scenario>

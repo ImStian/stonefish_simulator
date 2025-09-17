@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.79.0 commit date:2018-03-22, commit time:14:10, hash:f4dc9f9d68b</authoring_tool>
+    </contributor>
+    <created>2025-09-10T15:39:21</created>
+    <modified>2025-09-10T15:39:21</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images/>
+  <library_effects>
+    <effect id="Material_002-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <phong>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0 0 0 1</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.04351047 0.1791955 0.64 1</color>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.5 0.5 0.5 1</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">50</float>
+            </shininess>
+            <index_of_refraction>
+              <float sid="index_of_refraction">1</float>
+            </index_of_refraction>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="Material_001-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <phong>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0 0 0 1</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.64 0.1201929 2.1992e-4 1</color>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.5 0.5 0.5 1</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">50</float>
+            </shininess>
+            <index_of_refraction>
+              <float sid="index_of_refraction">1</float>
+            </index_of_refraction>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_materials>
+    <material id="Material_002-material" name="Material_002">
+      <instance_effect url="#Material_002-effect"/>
+    </material>
+    <material id="Material_001-material" name="Material_001">
+      <instance_effect url="#Material_001-effect"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="Cube_002-mesh" name="Cube.002">
+      <mesh>
+        <source id="Cube_002-mesh-positions">
+          <float_array id="Cube_002-mesh-positions-array" count="48">-0.7630506 -0.2145099 -0.638054 -1 -0.4514594 -0.1601309 -0.7630506 1.311591 -0.638054 -1 1.548541 -0.1601309 0.7630506 -0.2145099 -0.638054 1 -0.4514594 -0.1601309 0.7630506 1.311591 -0.638054 1 1.548541 -0.1601309 -0.4722374 -0.03711855 -0.1601309 -0.4722374 1.1342 -0.1601309 0.4722374 1.1342 -0.1601309 0.4722374 -0.03711855 -0.1601309 -0.4722374 -0.03711855 0.4023872 -0.4722374 1.1342 0.4023872 0.4722374 1.1342 0.4023872 0.4722374 -0.03711855 0.4023872</float_array>
+          <technique_common>
+            <accessor source="#Cube_002-mesh-positions-array" count="16" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_002-mesh-normals">
+          <float_array id="Cube_002-mesh-normals-array" count="54">-0.8959309 0 -0.4441936 0 0.895931 -0.4441932 0.8959309 0 -0.4441936 0 -0.895931 -0.4441936 0 0 -1 0 0 1 0 -1 0 0 0 1 0 0 1 0 1 0 1 0 0 -1 0 0 -0.895931 0 -0.4441936 0 0.8959308 -0.4441936 0.895931 0 -0.4441936 0 -0.8959309 -0.4441935 0 0 1 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#Cube_002-mesh-normals-array" count="18" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_002-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_002-mesh-positions"/>
+        </vertices>
+        <triangles material="Material_002-material" count="18">
+          <input semantic="VERTEX" source="#Cube_002-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_002-mesh-normals" offset="1"/>
+          <p>1 0 2 0 0 0 3 1 6 1 2 1 7 2 4 2 6 2 5 3 0 3 4 3 6 4 0 4 2 4 7 5 11 5 5 5 1 7 9 7 3 7 5 8 8 8 1 8 3 8 10 8 7 8 1 12 3 12 2 12 3 13 7 13 6 13 7 14 5 14 4 14 5 15 1 15 0 15 6 4 4 4 0 4 7 16 10 16 11 16 1 17 8 17 9 17 5 8 11 8 8 8 3 8 9 8 10 8</p>
+        </triangles>
+        <triangles material="Material_001-material" count="10">
+          <input semantic="VERTEX" source="#Cube_002-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_002-mesh-normals" offset="1"/>
+          <p>11 6 12 6 8 6 13 8 15 8 14 8 9 9 14 9 10 9 10 10 15 10 11 10 8 11 13 11 9 11 11 6 15 6 12 6 13 8 12 8 15 8 9 9 13 9 14 9 10 10 14 10 15 10 8 11 12 11 13 11</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_controllers/>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="payload" name="payload" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 4.34 0 0 1 0.11 0 0 0 1</matrix>
+        <instance_geometry url="#Cube_002-mesh" name="payload">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material_002-material" target="#Material_002-material"/>
+              <instance_material symbol="Material_001-material" target="#Material_001-material"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+        <extra>
+          <technique profile="blender">
+            <Child_Of_constraint>
+              <type sid="type" type="int">1</type>
+              <enforce sid="enforce" type="float">1</enforce>
+              <flag sid="flag" type="int">17</flag>
+              <headtail sid="headtail" type="float">0</headtail>
+              <lin_error sid="lin_error" type="float">0</lin_error>
+              <own_space sid="own_space" type="int">0</own_space>
+              <rot_error sid="rot_error" type="float">0</rot_error>
+              <tar_space sid="tar_space" type="int">0</tar_space>
+              <lin_error sid="lin_error" type="float">0</lin_error>
+              <target_id sid="target_id" type="string"></target_id>
+            </Child_Of_constraint>
+          </technique>
+        </extra>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<scenario>
+  <environment>
+    <ned latitude="63.446827" longitude="10.421906"/>
+    <ocean>
+        <water density="1031.0" jerlov="0.60"/>
+        <waves height="0.0"/>
+        <particles enabled="true"/>
+        <current type="uniform">
+            <velocity xyz="0.1 0.1 0.0"/>
+        </current>
+    </ocean>
+    <atmosphere>
+        <sun azimuth="-88.0" elevation="20.0"/>
+        <wind type="uniform">
+            <velocity xyz="1.0 0.0 0.0"/>
+        </wind>
+        <wind type="jet">
+            <center xyz="0.0 0.0 3.0"/>
+            <outlet radius="0.2"/>
+            <velocity xyz="0.0 2.0 0.0"/>
+        </wind>
+    </atmosphere>
+  </environment>
+
+  <include file="$(find stonefish_sim)/metadata/materials.scn"/>
+  <include file="$(find stonefish_sim)/metadata/looks.scn"/>
+
+  <!-- USV as a robot -->
+  <robot name="usv" fixed="false" self_collisions="false">
+    <base_link name="usv_base" type="model" physics="floating">
+      <physical>
+        <mesh filename="objects/usv.obj" scale="10.0"/>
+        <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+      </physical>
+      <visual>
+        <mesh filename="objects/usv.obj" scale="10.0"/>
+        <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+      </visual>
+      <look name="Yellow"/>
+      <material name="Neutral"/>
+      <mass value="10.0"/>
+      <inertia xyz="10.0 10.0 10.0"/>
+    </base_link>
+    <world_transform xyz="0 0 1.0" rpy="0 0 0"/>
+  </robot>
+
+  <!-- Passive payload -->
+  <dynamic name="payload" type="model" physics="floating">
+    <physical>
+      <mesh filename="objects/payload.obj" scale="10.0"/>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+    </physical>
+    <visual>
+      <mesh filename="objects/payload.obj" scale="10.0"/>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+    </visual>
+    <look name="LightGreen"/>
+    <material name="Neutral"/>
+    <mass value="5.0"/>
+    <inertia xyz="5.0 5.0 5.0"/>
+    <world_transform xyz="0 -5 1.0" rpy="0 0 0"/>
+  </dynamic>
+
+  <!-- Rope connecting USV and payload (see minimum_test.scn for format) -->
+  <rope name="tow_cable"
+        body1="usv" point1="0.5 0.0 0.2"
+        body2="payload" point2="0.0 0.0 0.0"
+        segments="15"
+        length="5.0"
+        radius="0.02"
+        youngs="1e5"
+        damping="0.05"
+        look="Yellow"/>
+
+</scenario>
+
